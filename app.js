@@ -49,11 +49,20 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 */
-
+var user = 0;
 io.on('connection', function(socket){
-    console.log('a user has connected');
+    user++;
+    var localUser = user;
+    var color;
+    console.log('a user has connected: ' + localUser);
+    if (localUser % 2 == 0) {
+        color = "black";
+    } else {
+        color = "white";
+    }
+    io.emit('color', color);
     socket.on('disconnect', function(){
-        console.log('user disconnected');
+        console.log('user disconnected: ' + localUser);
     });
     socket.on('chat message', function(msg){
         console.log('message: ' + msg);
