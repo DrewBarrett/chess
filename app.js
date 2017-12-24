@@ -49,9 +49,11 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 */
-
+var players = 0;
 io.on('connection', function(socket){
-    console.log('a user has connected');
+    players++;
+    var color = "white";
+    console.log('a user has connected' + color);
     socket.on('disconnect', function(){
         console.log('user disconnected');
     });
