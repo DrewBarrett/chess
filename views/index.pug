@@ -6,12 +6,14 @@ block head
 block content
   h1= title
   p Welcome to #{title}
+  p You are 
+    span(id="color") UNDECIDED
   div(id='board' style="width: 600px")
-  p Status:
-    span(id="status")
-  p FEN:
+  p Status: 
+    span(id="status" con) 
+  p FEN: 
     span(id="fen")
-  p PGN:
+  p PGN: 
     span(id="pgn")
   ul(id='messages')
   form(action="")
@@ -22,15 +24,4 @@ block content
   script(src="/js/chessboard-0.3.0.min.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js")
   script(src="/js/game.js")
-  script.
-    $(function () {
-            var socket = io();
-            $('form').submit(function(){
-                socket.emit('chat message', $('#m').val());
-                $('#m').val('');
-                return false;
-            });
-            socket.on('chat message', function(msg){
-                $('#messages').append($('<li>').text(msg));
-            });
-        });
+  script(src="/js/socketio.js")
