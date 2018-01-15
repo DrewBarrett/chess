@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var Chess = require('chess.js').Chess;
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -52,13 +54,15 @@ app.get('/', function(req, res){
 });
 */
 
+var game = new Chess();
+
 var user = 0;
 io.on('connection', function (socket) {
     user++;
     var localUser = user;
     var color;
     console.log('a user has connected: ' + localUser);
-    if (localUser % 2 === 0) {
+    if (localUser % 2 == 0) {
         color = 'black';
     } else {
         color = 'white';
@@ -68,8 +72,8 @@ io.on('connection', function (socket) {
         console.log('user disconnected: ' + localUser);
     });
     socket.on('chat message', function (msg) {
-        console.log('message: ' + msg);
-        io.emit('chat message', msg);
+        console.log(color + ': Chat: ' + msg);
+        io.emit('chat message', color + ': ' + msg);
     });
 });
 
