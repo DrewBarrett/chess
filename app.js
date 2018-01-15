@@ -49,6 +49,7 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 */
+
 var user = 0;
 io.on('connection', function(socket){
     user++;
