@@ -1,14 +1,14 @@
 $(function () {
     var socket = io();
-    $('form').submit(function(){
+    $('form').submit(function () {
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
         return false;
     });
-    socket.on('chat message', function(msg){
+    socket.on('chat message', function (msg) {
         $('#messages').append($('<li>').text(msg));
     });
-    socket.on('color', function(color){
+    socket.on('color', function (color) {
         $('#color').html(color);
     });
 });
