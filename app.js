@@ -74,7 +74,7 @@ io.on('connection', function (socket) {
 });
 
 http.listen(3000, function () {
-    console.log('ayy server be up');
+    console.log('Server listening at http://localhost:3000');
 });
 
 module.exports = app;
